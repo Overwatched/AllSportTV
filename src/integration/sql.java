@@ -24,17 +24,18 @@ public class sql {
     }
 
     private String readPw() throws FileNotFoundException {
+        String b = null;
         try {
             FileReader fr = new FileReader("../db.txt");
-            char[] a = new char[50];
+            char[] a = new char[16];
             fr.read(a); // reads the content to the array
-            password = new String(a);
+            b = new String(a);
 
         }catch(Exception e){
             System.out.println("Type in the pw instead.");
         }
 
-        return password;
+        return b;
     }
     // method for establishing a DB connection
     public void connect()
