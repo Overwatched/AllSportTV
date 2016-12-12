@@ -1,5 +1,7 @@
 package integration;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -15,7 +17,25 @@ public class sql {
     private String URL = "jdbc:mysql:///allsporttvapp";
     private String driver = "com.mysql.jdbc.Driver";
     private String userID = "root";
-    private String password = "";
+
+    private String password = readPw();
+
+    public sql() throws FileNotFoundException {
+    }
+
+    private String readPw() throws FileNotFoundException {
+        try {
+            FileReader fr = new FileReader("../db.txt");
+            char[] a = new char[50];
+            fr.read(a); // reads the content to the array
+            password = new String(a);
+
+        }catch(Exception e){
+            System.out.println("Type in the pw instead.");
+        }
+
+        return password;
+    }
     // method for establishing a DB connection
     public void connect()
     {
